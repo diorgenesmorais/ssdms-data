@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  ssdms-mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ssdms_data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "ssdms"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      ssdms-network:
+        aliases:
+          - ssdmsbase
+    hostname: "ssdmsbase"
+    container_name: ssdms-mysql
+
+networks:
+  ssdms-network:
+    name: "ssdms-network"
+
+volumes:
+  ssdms_data:
+    name: "ssdms_data"
