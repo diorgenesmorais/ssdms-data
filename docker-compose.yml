@@ -8,6 +8,7 @@ services:
       - "3306:3306"
     volumes:
       - ssdms_data:/var/lib/mysql
+    restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: "ssdms"
@@ -19,6 +20,11 @@ services:
           - ssdmsbase
     hostname: "ssdmsbase"
     container_name: ssdms-mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
 
 networks:
   ssdms-network:
