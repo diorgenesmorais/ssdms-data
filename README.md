@@ -11,7 +11,7 @@ export MYSQL_PASSWORD="senha"
 - Executar do docker compose:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 1 - Crie um arquivo '.env' com base no '.env.example'
